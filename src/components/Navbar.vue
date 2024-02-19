@@ -17,13 +17,13 @@
 <template>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="navbar">
+        <a href="javascript:void(0);" class="toggle" @click="toggleMenu()">
+            <i class="fa fa-bars"></i>
+        </a>
         <a v-if="menuExpanded" href="" class="nav-item">Home</a>
         <a v-if="menuExpanded" href="" class="nav-item">About Us</a>
         <a v-if="menuExpanded" href="" class="nav-item">Contact Us</a>
         <a v-if="menuExpanded" href="" class="nav-item">FAQ</a>
-        <a href="javascript:void(0);" class="toggle" @click="toggleMenu()">
-            <i class="fa fa-bars"></i>
-        </a>
     </div>
 </template>
 
