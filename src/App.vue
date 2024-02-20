@@ -22,4 +22,10 @@ import Navbar from './components/Navbar.vue'
     margin: 1% 10%;
   }
 
+  @media (min-width: 1024px) {
+    main {
+      padding-left: 30px;
+    }
+  }
+
 </style>

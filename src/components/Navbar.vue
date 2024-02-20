@@ -38,6 +38,7 @@
 </template>
 
 <style scoped>
+/* Mobile design */
 a, .green {
     text-decoration: none;
     font-weight: bold;
@@ -46,7 +47,6 @@ a, .green {
     padding: 10px;
 }
 
-/* Mobile design */
 .navbar {
     display: grid;
     gap: 1rem;
@@ -62,7 +62,14 @@ a, .green {
 /* Desktop design - apply when the screen width is 1024px or larger */
 @media (min-width: 1024px) {
     .navbar {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* Multiple columns on desktop */
+        position: fixed;
+        left: 0;
+        width: 10%;
+        height: 100%;
+
+        grid-template-rows: none;
+        gap: none;
+        align-content: start;
     }
 }
 </style>
