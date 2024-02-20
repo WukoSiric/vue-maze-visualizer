@@ -30,10 +30,19 @@
         <a v-if="isMobile" href="javascript:void(0);" :class="{toggle: isMobile}" @click="toggleMenu()">
             <i class="fa fa-bars"></i>
         </a>
-        <a v-if="!isMobile || menuExpanded" href="" class="nav-item">Home</a>
-        <a v-if="!isMobile || menuExpanded" href="" class="nav-item">About Us</a>
-        <a v-if="!isMobile || menuExpanded" href="" class="nav-item">Contact Us</a>
-        <a v-if="!isMobile || menuExpanded" href="" class="nav-item">FAQ</a>
+        <div v-if="!isMobile || menuExpanded" class="navbar-contents">
+            <h1> Generation Algorithm</h1>
+            <a href="" class="nav-item">Random</a>
+            <h1> Solving Algorithm</h1>
+            <a href="" class="nav-item">Breadth First</a>
+            <a href="" class="nav-item">Depth First</a>
+
+            <div class="controls">
+                <button> Play </button>
+                <button> Clear Board</button>
+                <button> Reset </button>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -47,26 +56,39 @@ a, .green {
     padding: 10px;
 }
 
-.navbar {
+.navbar { 
     display: grid;
-    gap: 1rem;
     grid-template-columns: 1fr;
-    text-align: center;
-
     background-color: rgb(51, 51, 51);
     position: fixed;
     top: 0; 
     width: 100%;
+    justify-items: center;
+}
+
+.navbar-contents {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+    text-align: center;
+    background-color: rgb(51, 51, 51);
+    padding: 10px;
+}
+
+h1 {
+    color: white;
 }
 
 /* Desktop design - apply when the screen width is 1024px or larger */
 @media (min-width: 1024px) {
-    .navbar {
+    .navbar { 
         position: fixed;
         left: 0;
         width: 10%;
         height: 100%;
 
+    }
+    .navbar-contents {
         grid-template-rows: none;
         gap: none;
         align-content: start;
