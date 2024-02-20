@@ -38,6 +38,14 @@
 </template>
 
 <style scoped>
+a, .green {
+    text-decoration: none;
+    font-weight: bold;
+    color: hsla(160, 100%, 37%, 1);
+    transition: 0.4s;
+    padding: 10px;
+}
+
 /* Mobile design */
 .navbar {
     display: grid;
