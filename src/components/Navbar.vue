@@ -46,6 +46,9 @@
     text-align: center;
 
     background-color: rgb(51, 51, 51);
+    position: fixed;
+    top: 0; 
+    width: 100%;
 }
 
 /* Desktop design - apply when the screen width is 1024px or larger */
