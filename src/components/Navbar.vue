@@ -34,16 +34,19 @@
         </a>
         <div v-if="!isMobile || menuExpanded" class="navbar-contents">
             <h1> Generation Algorithm</h1>
-            <a href="" class="nav-item">Random</a>
+            <label class="radio-container"> 
+                <input type="radio" value="random" id="random" checked/>
+                Random
+            </label>
             <h1> Solving Algorithm</h1>
-            <a href="" class="nav-item">Breadth First</a>
-            <a href="" class="nav-item">Depth First</a>
-
-            <div class="controls">
-                <button> Play </button>
-                <button> Clear Board</button>
-                <button> Reset </button>
-            </div>
+            <label class="radio-container"> 
+                <input type="radio" value="dfs" id="dfs" name="solvingAlgorithm" checked/>
+                Depth First Search
+            </label>
+            <label class="radio-container"> 
+                <input type="radio" value="bfs" id="bfs" name="solvingAlgorithm"/>
+                Breadth First Search
+            </label>
         </div>
     </div>
 </template>
@@ -78,7 +81,41 @@ a, .green {
 }
 
 h1 {
+    font-size: 1.2rem;
     color: white;
+}
+
+/* Radio buttons */
+
+.radio-container {
+    display: grid;
+    background-color: #82998d;
+    color: white; 
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    transition: all ease-in-out 0.1s;
+}
+
+.radio-container:hover {
+    background-color: #6cbf96;
+    transform: scale(0.95);
+}
+
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Style for the checked state of the radio button */
+.radio-container:has(input[type="radio"]:checked) {
+    background-color: #47cc89;
+    color: white; 
 }
 
 /* Desktop design - apply when the screen width is 1024px or larger */
