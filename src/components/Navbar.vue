@@ -29,16 +29,17 @@
 <template>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="navbar">
+        <span id="MazeSolver">MazeSolver</span>
         <a v-if="isMobile" href="javascript:void(0);" @click="toggleMenu()">
             <i class="fa fa-bars"></i>
         </a>
         <div v-if="!isMobile || menuExpanded" class="navbar-contents">
-            <h1> Generation Algorithm</h1>
+            <h1><i class="fa fa-plus-square"></i> Generation</h1>
             <label class="radio-container"> 
                 <input type="radio" value="random" id="random" checked/>
                 Random
             </label>
-            <h1> Solving Algorithm</h1>
+            <h1><i class="fa fa-map"></i> Solving</h1>
             <label class="radio-container"> 
                 <input type="radio" value="dfs" id="dfs" name="solvingAlgorithm" checked/>
                 Depth First Search
@@ -69,6 +70,13 @@ a, .green {
     top: 0; 
     width: 100%;
     justify-items: center;
+}
+
+#MazeSolver {
+    color: white;
+    font-weight: 500;
+    font-size: 2rem;
+    padding: 10px;
 }
 
 .navbar-contents {
@@ -121,9 +129,11 @@ input[type="radio"] {
 /* Desktop design - apply when the screen width is 1024px or larger */
 @media (min-width: 1024px) {
     .navbar { 
+        display: grid;
+        align-content: start;
         position: fixed;
         left: 0;
-        width: 10%;
+        width: auto;
         height: 100%;
 
     }
