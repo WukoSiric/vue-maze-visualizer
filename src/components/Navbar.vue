@@ -8,11 +8,13 @@
         },
         methods: {
             toggleMenu() {
-                console.log("Toggled menu to " + this.menuExpanded);
                 this.menuExpanded = !this.menuExpanded;
             },
             updateIsMobile() { 
                 this.isMobile = window.innerWidth < 1024;
+                if (this.isMobile) {
+                    this.menuExpanded = false;
+                }
             }
         },
         mounted() { 
@@ -27,7 +29,7 @@
 <template>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="navbar">
-        <a v-if="isMobile" href="javascript:void(0);" :class="{toggle: isMobile}" @click="toggleMenu()">
+        <a v-if="isMobile" href="javascript:void(0);" @click="toggleMenu()">
             <i class="fa fa-bars"></i>
         </a>
         <div v-if="!isMobile || menuExpanded" class="navbar-contents">
