@@ -2,6 +2,7 @@
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import Navbar from './components/Navbar.vue'
+import Maze from './components/Maze.vue';
 </script>
 
 <template>
@@ -18,6 +19,7 @@ import Navbar from './components/Navbar.vue'
     Tempore dolores unde quasi, commodi nobis optio ratione, placeat, fugiat repellendus eveniet odio? Esse ducimus officiis cum est laudantium a commodi animi repudiandae architecto, eveniet asperiores totam sunt voluptas officia.</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, nulla? Nesciunt, quisquam omnis sed quas nulla eligendi recusandae mollitia blanditiis? Modi quo perferendis magni nobis nisi cumque illum laudantium quod!
     Exercitationem praesentium officia dolor obcaecati sed, perspiciatis quas ex ab minima. Sint deserunt explicabo nisi laboriosam nostrum iure, alias eum vero odit blanditiis aliquid labore dolorem perspiciatis maxime natus sapiente.</p>
+    <Maze></Maze>
   </main>
 </template>
 
