@@ -8,5 +8,6 @@ export default class Cell {
     this.hasLeft = true;
     this.visited = false;
     this.isFinish = false;
+    this.isStart = false;
   }
 }

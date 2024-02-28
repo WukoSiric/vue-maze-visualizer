@@ -6,15 +6,17 @@ export default class Visualizer {
 	}
 
 	async drawCellWithDelay(cell, gapSize, fillStyle = "white") {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        this.drawCell(cell, gapSize, fillStyle);
-        resolve();
-      }, 5);
-    });
-  }
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				this.drawCell(cell, gapSize, fillStyle);
+				resolve();
+			}, 1);
+		});
+	}
 
 	drawCell(cell, gapSize, fillStyle = "white") {
+		if (cell.isFinish) fillStyle = "green";
+		if (cell.isStart) fillStyle = "red";
 		this.context.fillStyle = fillStyle;
 		this.context.fillRect(cell.row * gapSize, cell.col * gapSize, gapSize, gapSize);
 		if (cell.hasTop) this.drawTop(cell, gapSize);

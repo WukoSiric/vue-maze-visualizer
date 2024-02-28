@@ -22,8 +22,10 @@ export default class Maze {
       this.maze.push(newColumn);
     }
     this.getNeighbors(0, 0);
+    this.maze[0][0].isStart = true;
+    this.maze[this.maze.length - 1][this.maze[0].length- 1].isFinish = true;
+    await this.generateMaze(0, 0, this.maze[0][0]);
 
-    this.generateMaze(0, 0, this.maze[0][0]);
   }
 
   async generateMaze(row, col, cell, visited = []) {
