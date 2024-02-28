@@ -10,13 +10,14 @@ export default {
     this.context = this.canvas.getContext("2d");
     this.canvas.width, this.width = window.innerWidth;
     this.canvas.height, this.height = window.innerHeight;
-    this.gapSize = 9;
+    this.gapSize = 15;
     this.rows = Math.floor(this.height / this.gapSize);
     this.columns= Math.floor(this.width / this.gapSize); 
     // Generate empty maze
 
     this.maze = new Maze(this.rows, this.columns, this.gapSize, this.context);
     this.maze.initializeMaze();
+    // this.maze.generateMaze(this.maze.maze[0][0], []);
   },
   methods: {
   }
