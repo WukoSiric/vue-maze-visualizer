@@ -20,7 +20,7 @@ export default {
   mounted() {
     window.addEventListener('resize', this.updateIsMobile);
   },
-  destroyed() {
+  unmounted() {
     window.removeEventListener('resize', this.updateIsMobile);
   }
 }
