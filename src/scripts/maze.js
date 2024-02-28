@@ -21,8 +21,9 @@ export default class Maze {
       }
       this.maze.push(newColumn);
     }
-  
-    console.log(this.getNeighbors(5, 5));
+    this.getNeighbors(0, 0);
+
+    this.generateMaze(0, 0, this.maze[0][0]);
   }
   
 
@@ -35,37 +36,84 @@ export default class Maze {
     });
   }
 
+  generateMaze(row, col, cell, visited = new Set()) {
+    visited.add(cell);
+    cell.visited = true;
+  
+    const [neighbors, directions] = this.getNeighbors(row, col);
+  
+    if (neighbors.length > 0) {
+      const randomIndex = Math.floor(Math.random() * neighbors.length);
+      const nextCell = neighbors[randomIndex];
+      const direction = directions[randomIndex];
+
+      if (direction === "top") {
+        row -= 1; 
+      }
+      else if (direction == "right") {
+        col += 1;
+      }
+      else if (direction == "bottom") {
+        row += 1;
+      }
+      else if (direction == "left") {
+        col -= 1;
+      }
+  
+      this.updateWalls(cell, nextCell, direction);
+      this.visualizer.drawCell(cell, this.gapSize);
+      this.visualizer.drawCell(nextCell, this.gapSize);
+  
+      this.generateMaze(row, col, nextCell, visited);
+    }
+  }
+  
   getNeighbors(row, col) {
     const neighbors = [];
-    console.log("row: " + this.rows);
-    console.log("columns: " + this.columns);
+    const directions = [];
   
     // Check top neighbor
     if (row - 1 >= 0 && !this.maze[row - 1][col].visited) {
       neighbors.push(this.maze[row - 1][col]);
+      directions.push("top");
     }
-  
+
     // Check right neighbor 
-    if (col + 1 < this.columns && !this.maze[row][col + 1].visited) {
+    if (col + 1 < this.maze[0].length && !this.maze[row][col+1].visited) {
       neighbors.push(this.maze[row][col + 1]);
+      directions.push("right");  
     }
-  
+
     // Check bottom neighbor 
-    if (row + 1 < this.rows && !this.maze[row + 1][col].visited) {
+    if (row + 1 < this.maze.length && !this.maze[row + 1][col].visited) {
       neighbors.push(this.maze[row + 1][col]);
+      directions.push("bottom");
     }
-  
+
     // Check left neighbor
     if (col - 1 >= 0 && !this.maze[row][col - 1].visited) {
       neighbors.push(this.maze[row][col - 1]);
-    }
-
-    for (let i = 0; i < neighbors.length; i++) {
-      this.visualizer.colorCell(neighbors[i], this.gapSize, "black");
+      directions.push("left");
     }
   
-    return neighbors;
+    this.visualizer.colorCell(this.maze[row][col], this.gapSize, "blue");
+    return [neighbors, directions];
   }
 
-
+  updateWalls(fromCell, toCell, direction) {
+    if (direction == "top") {
+      fromCell.hasTop = false; 
+      toCell.hasBottom = false; 
+    } else if (direction == "right") {
+      fromCell.hasRight = false;
+      toCell.hasLeft = false;
+    } else if (direction == "bottom") {
+      fromCell.hasBottom = false;
+      toCell.hasTop = false;
+    } else if (direction == "left") {
+      fromCell.hasLeft = false;
+      toCell.hasRight = false;
+    }
+    return [fromCell, toCell];
+  }
 }
