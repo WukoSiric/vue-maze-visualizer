@@ -17,7 +17,7 @@ export default class Maze {
       for (let row = 0; row < this.rows; row += this.gapSize) {
         let cell = new Cell(row, col);
         newColumn.push(cell);
-        await this.drawCellWithDelay(cell); // Draw cell with delay
+        this.visualizer.drawCell(cell, this.gapSize); // Draw cell with delay
       }
       this.maze.push(newColumn);
     }
@@ -25,19 +25,8 @@ export default class Maze {
 
     this.generateMaze(0, 0, this.maze[0][0]);
   }
-  
 
-  async drawCellWithDelay(cell) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        this.visualizer.drawCell(cell, this.gapSize);
-        resolve();
-      }, 5);
-    });
-  }
-
-  generateMaze(row, col, cell, visited = new Set()) {
-    visited.add(cell);
+  async generateMaze(row, col, cell, visited = []) {
     cell.visited = true;
   
     const [neighbors, directions] = this.getNeighbors(row, col);
@@ -61,11 +50,24 @@ export default class Maze {
       }
   
       this.updateWalls(cell, nextCell, direction);
-      this.visualizer.drawCell(cell, this.gapSize);
-      this.visualizer.drawCell(nextCell, this.gapSize);
+      await this.visualizer.drawCellWithDelay(cell, this.gapSize);
+      await this.visualizer.drawCellWithDelay(nextCell, this.gapSize);
   
+      visited.push(cell);
       this.generateMaze(row, col, nextCell, visited);
-    }
+    } 
+    else if (visited.length > 0) {
+      let previous_cell = visited.pop(); 
+      for (let i = 0; i < this.maze.length; i++) {
+        for (let j = 0; j < this.maze[i].length; j++) { 
+          if (this.maze[i][j] === previous_cell) {
+            row = i;
+            col = j
+          }
+        }
+      }
+      this.generateMaze(row, col, previous_cell, visited);
+    } 
   }
   
   getNeighbors(row, col) {
@@ -96,7 +98,7 @@ export default class Maze {
       directions.push("left");
     }
   
-    this.visualizer.colorCell(this.maze[row][col], this.gapSize, "blue");
+    // this.visualizer.colorCell(this.maze[row][col], this.gapSize, "blue");
     return [neighbors, directions];
   }
 
