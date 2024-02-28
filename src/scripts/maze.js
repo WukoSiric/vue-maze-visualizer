@@ -17,7 +17,7 @@ export default class Maze {
       for (let row = 0; row < this.rows; row++ ) {
         let cell = new Cell(row, col);
         newColumn.push(cell);
-        this.visualizer.drawCell(cell, this.gapSize); // Draw cell with delay
+        this.visualizer.drawCell(cell, this.gapSize, "grey"); // Draw cell with delay
       }
       this.maze.push(newColumn);
     }

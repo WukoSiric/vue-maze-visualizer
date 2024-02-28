@@ -5,17 +5,17 @@ export default class Visualizer {
 		this.context = mazeContext;
 	}
 
-	async drawCellWithDelay(cell, gapSize) {
+	async drawCellWithDelay(cell, gapSize, fillStyle = "white") {
     return new Promise((resolve) => {
       setTimeout(() => {
-        this.drawCell(cell, gapSize);
+        this.drawCell(cell, gapSize, fillStyle);
         resolve();
-      }, 0);
+      }, 5);
     });
   }
 
-	drawCell(cell, gapSize) {
-		this.context.fillStyle = "white";
+	drawCell(cell, gapSize, fillStyle = "white") {
+		this.context.fillStyle = fillStyle;
 		this.context.fillRect(cell.row * gapSize, cell.col * gapSize, gapSize, gapSize);
 		if (cell.hasTop) this.drawTop(cell, gapSize);
 		if (cell.hasRight) this.drawRight(cell, gapSize);
