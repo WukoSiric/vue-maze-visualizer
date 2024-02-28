@@ -12,56 +12,60 @@ export default class Maze {
   }
 
   async initializeMaze() {
-    for (let row = 0; row < this.rows; row += this.gapSize) {
-      let newRow = [];
-      for (let col = 0; col < this.columns; col += this.gapSize) {
-        let cell = new Cell(row, col); 
-        newRow.push(cell);
-        // this.visualizer.drawCell(cell, this.gapSize);
+    for (let col = 0; col < this.columns; col += this.gapSize) {
+      let newColumn = [];
+      for (let row = 0; row < this.rows; row += this.gapSize) {
+        let cell = new Cell(row, col);
+        newColumn.push(cell);
         await this.drawCellWithDelay(cell); // Draw cell with delay
       }
-      this.maze.push(newRow);
+      this.maze.push(newColumn);
     }
-
-    console.log(this.maze);
+  
+    console.log(this.getNeighbors(5, 5));
   }
+  
 
   async drawCellWithDelay(cell) {
     return new Promise((resolve) => {
       setTimeout(() => {
         this.visualizer.drawCell(cell, this.gapSize);
         resolve();
-      }, 10); // You can adjust the delay time (in milliseconds) as needed
+      }, 5);
     });
   }
 
-  getNeighbors(cell) {
+  getNeighbors(row, col) {
     const neighbors = [];
-    const row = cell.row;
-    const col = cell.col;
+    console.log("row: " + this.rows);
+    console.log("columns: " + this.columns);
   
     // Check top neighbor
-    if (row - this.gapSize >= 0 && !this.maze[row - this.gapSize][col].visited) {
-      neighbors.push(this.maze[row - this.gapSize][col]);
+    if (row - 1 >= 0 && !this.maze[row - 1][col].visited) {
+      neighbors.push(this.maze[row - 1][col]);
     }
-
+  
     // Check right neighbor 
-    if (col + this.gapSize < this.columns && !this.maze[row][col + this.gapSize].visited) {
-      neighbors.push(this.maze[row][col + this.gapSize]);
+    if (col + 1 < this.columns && !this.maze[row][col + 1].visited) {
+      neighbors.push(this.maze[row][col + 1]);
+    }
+  
+    // Check bottom neighbor 
+    if (row + 1 < this.rows && !this.maze[row + 1][col].visited) {
+      neighbors.push(this.maze[row + 1][col]);
+    }
+  
+    // Check left neighbor
+    if (col - 1 >= 0 && !this.maze[row][col - 1].visited) {
+      neighbors.push(this.maze[row][col - 1]);
     }
 
-    console.log(row);
-    console.log(this.gapSize);
-    console.log(this.maze[8][0]);
-
-    // Check bottom neighbor 
-    // if (row + this.gapSize < this.rows && !this.maze[row + this.gapSize][col].visited) {
-    //   neighbors.push(this.maze[row + this.gapSize][col]);
-    // }
+    for (let i = 0; i < neighbors.length; i++) {
+      this.visualizer.colorCell(neighbors[i], this.gapSize, "black");
+    }
   
     return neighbors;
   }
-  
 
 
 }
