@@ -8,7 +8,6 @@ import MazeGrid from './components/MazeGrid.vue';
     <NavBar></NavBar>
   </header>
   <main>
-    <h1>Welcome to the Maze Solver! </h1>
     <MazeGrid></MazeGrid>
   </main>
 </template>
