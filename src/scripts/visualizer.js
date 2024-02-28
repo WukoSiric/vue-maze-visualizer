@@ -6,6 +6,8 @@ export default class Visualizer {
 	}
 
 	drawCell(cell, gapSize) {
+		this.context.fillStyle = "white";
+		this.context.fillRect(cell.row, cell.col, gapSize, gapSize);
 		if (cell.hasTop) this.drawTop(cell, gapSize);
 		if (cell.hasRight) this.drawRight(cell, gapSize);
 		if (cell.hasBottom) this.drawBottom(cell, gapSize);
