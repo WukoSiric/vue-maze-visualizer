@@ -8,16 +8,13 @@ export default {
   mounted() {
     this.canvas = document.getElementById("maze");
     this.context = this.canvas.getContext("2d");
-    this.canvas.width, this.width = window.innerWidth;
-    this.canvas.height, this.height = window.innerHeight;
-    this.gapSize = 15;
-    this.rows = Math.floor(this.height / this.gapSize);
-    this.columns= Math.floor(this.width / this.gapSize); 
-    // Generate empty maze
-
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+    this.gapSize = 5;
+    this.rows = Math.floor(this.canvas.width / this.gapSize);
+    this.columns= Math.floor(this.canvas.height / this.gapSize); 
     this.maze = new Maze(this.rows, this.columns, this.gapSize, this.context);
     this.maze.initializeMaze();
-    // this.maze.generateMaze(this.maze.maze[0][0], []);
   },
   methods: {
   }
