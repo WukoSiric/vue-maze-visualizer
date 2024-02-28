@@ -36,18 +36,8 @@ export default class Maze {
       const nextCell = neighbors[randomIndex];
       const direction = directions[randomIndex];
 
-      if (direction === "top") {
-        row -= 1; 
-      }
-      else if (direction == "right") {
-        col += 1;
-      }
-      else if (direction == "bottom") {
-        row += 1;
-      }
-      else if (direction == "left") {
-        col -= 1;
-      }
+      row = nextCell.col; //I dont know why theyre backwards
+      col = nextCell.row;
   
       this.updateWalls(cell, nextCell, direction);
       await this.visualizer.drawCellWithDelay(cell, this.gapSize);
@@ -58,14 +48,8 @@ export default class Maze {
     } 
     else if (visited.length > 0) {
       let previous_cell = visited.pop(); 
-      for (let i = 0; i < this.maze.length; i++) {
-        for (let j = 0; j < this.maze[i].length; j++) { 
-          if (this.maze[i][j] === previous_cell) {
-            row = i;
-            col = j
-          }
-        }
-      }
+      row = previous_cell.col; //I dont know why theyre backwards
+      col = previous_cell.row;
       this.generateMaze(row, col, previous_cell, visited);
     } 
   }
