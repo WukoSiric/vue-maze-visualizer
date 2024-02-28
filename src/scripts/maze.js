@@ -25,7 +25,6 @@ export default class Maze {
     this.maze[0][0].isStart = true;
     this.maze[this.maze.length - 1][this.maze[0].length- 1].isFinish = true;
     await this.generateMaze(0, 0, this.maze[0][0]);
-
   }
 
   async generateMaze(row, col, cell, visited = []) {
@@ -103,5 +102,32 @@ export default class Maze {
       toCell.hasRight = false;
     }
     return [fromCell, toCell];
+  }
+
+  // Solve maze using depth first search
+  solveWithDFS(cell, visited = []) {
+  }
+
+  // Get neighbors can go to 
+  getNeighborsTunnelTo(cell) {
+    let [neighbors, directions] = this.getNeighbors(cell.row, cell. col);
+    let reachableNeighbors = [];
+
+    for (let i = 0; i < neighbors.length; i++) {
+      if (directions[i] == "top" && !cell.hasTop && !neighbors[i].hasBottom) {
+        reachableNeighbors.push(neighbors[i]);
+      }
+      else if (directions[i] == "right" && !cell.hasRight && !neighbors[i].hasLeft) {
+        reachableNeighbors.push(neighbors[i]);
+      }
+      else if (directions[i] == "bottom" && !cell.hasBottom && !neighbors[i].hasTop) {
+        reachableNeighbors.push(neighbors[i]);
+      }
+      else if (directions[i] == "left" && !cell.hasLeft && !neighbors[i].hasRight) {
+        reachableNeighbors.push(neighbors[i]);
+      }
+    }
+
+    return reachableNeighbors;
   }
 }
