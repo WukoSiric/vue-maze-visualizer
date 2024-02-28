@@ -16,7 +16,7 @@ export default class Visualizer {
 
 	drawCell(cell, gapSize) {
 		this.context.fillStyle = "white";
-		this.context.fillRect(cell.row, cell.col, gapSize, gapSize);
+		this.context.fillRect(cell.row * gapSize, cell.col * gapSize, gapSize, gapSize);
 		if (cell.hasTop) this.drawTop(cell, gapSize);
 		if (cell.hasRight) this.drawRight(cell, gapSize);
 		if (cell.hasBottom) this.drawBottom(cell, gapSize);
@@ -25,34 +25,34 @@ export default class Visualizer {
 
 	drawTop(cell, gapSize) {
 		this.context.beginPath();
-		this.context.moveTo(cell.row, cell.col);
-		this.context.lineTo(cell.row + gapSize, cell.col);
+		this.context.moveTo(cell.row * gapSize, cell.col * gapSize);
+		this.context.lineTo(cell.row * gapSize + gapSize, cell.col * gapSize);
 		this.context.stroke();
 	}
 
 	drawRight(cell, gapSize) {
 		this.context.beginPath();
-		this.context.moveTo(cell.row + gapSize, cell.col);
-		this.context.lineTo(cell.row + gapSize, cell.col + gapSize);
+		this.context.moveTo(cell.row * gapSize + gapSize, cell.col * gapSize);
+		this.context.lineTo(cell.row * gapSize + gapSize, cell.col * gapSize + gapSize);
 		this.context.stroke();
 	}
 
 	drawBottom(cell, gapSize) {
 		this.context.beginPath();
-		this.context.moveTo(cell.row, cell.col + gapSize);
-		this.context.lineTo(cell.row + gapSize, cell.col + gapSize);
+		this.context.moveTo(cell.row * gapSize, cell.col * gapSize + gapSize);
+		this.context.lineTo(cell.row * gapSize + gapSize, cell.col * gapSize + gapSize);
 		this.context.stroke();
 	}
 
 	drawLeft(cell, gapSize) {
 		this.context.beginPath();
-		this.context.moveTo(cell.row, cell.col);
-		this.context.lineTo(cell.row, cell.col + gapSize);
+		this.context.moveTo(cell.row * gapSize, cell.col * gapSize);
+		this.context.lineTo(cell.row * gapSize, cell.col * gapSize + gapSize);
 		this.context.stroke();
 	}
 
 	colorCell(cell, gapSize, colorString) {
 		this.context.fillStyle = colorString;
-		this.context.fillRect(cell.row, cell.col, gapSize, gapSize);
+		this.context.fillRect(cell.row * gapSize, cell.col * gapSize, gapSize, gapSize);
 	}
 }

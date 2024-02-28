@@ -12,9 +12,9 @@ export default class Maze {
   }
 
   async initializeMaze() {
-    for (let col = 0; col < this.columns; col += this.gapSize) {
+    for (let col = 0; col < this.columns; col++) {
       let newColumn = [];
-      for (let row = 0; row < this.rows; row += this.gapSize) {
+      for (let row = 0; row < this.rows; row++ ) {
         let cell = new Cell(row, col);
         newColumn.push(cell);
         this.visualizer.drawCell(cell, this.gapSize); // Draw cell with delay
