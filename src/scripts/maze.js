@@ -40,8 +40,8 @@ export default class Maze {
       col = nextCell.row;
   
       this.updateWalls(cell, nextCell, direction);
-      await this.visualizer.drawCellWithDelay(cell, this.gapSize);
-      await this.visualizer.drawCellWithDelay(nextCell, this.gapSize);
+      await this.visualizer.drawCell(cell, this.gapSize);
+      await this.visualizer.drawCell(nextCell, this.gapSize);
   
       visited.push(cell);
       this.generateMaze(row, col, nextCell, visited);
