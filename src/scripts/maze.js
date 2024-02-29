@@ -120,7 +120,7 @@ export default class Maze {
     }
   }
 
-  DFS(cell, visited = []) {
+  async DFS(cell, visited = []) {
     if (cell.isFinish) {
       console.log("Found the finish!");
       return
@@ -128,15 +128,14 @@ export default class Maze {
 
     cell.visited = true; 
     const neighbors = this.getNeighborsTunnelTo(cell);
-    this.getNeighborsTunnelTo(this.maze[4][5]);
 
     if (neighbors.length > 0) {
-      this.visualizer.drawCell(neighbors[0], this.gapSize, "orange");
+      await this.visualizer.drawCellWithDelay(neighbors[0], this.gapSize, "orange", 0);
       visited.push(cell);
       this.DFS(neighbors[0], visited);
     }
     else if (visited.length > 0) {
-      this.visualizer.drawCell(cell, this.gapSize);
+      await this.visualizer.drawCellWithDelay(cell, this.gapSize, "LightGray", 10);
       let previous_cell = visited.pop(); 
       this.DFS(previous_cell, visited);
     }
@@ -151,19 +150,19 @@ export default class Maze {
     for (let i = 0; i < neighbors.length; i++) {
       if (directions[i] == "top" && !cell.hasTop && !neighbors[i].hasBottom) {
         reachableNeighbors.push(neighbors[i]);
-        this.visualizer.drawCell(neighbors[i], this.gapSize, "tomato");
+        this.visualizer.drawCell(neighbors[i], this.gapSize, "LightGray");
       }
       else if (directions[i] == "right" && !cell.hasRight && !neighbors[i].hasLeft) {
         reachableNeighbors.push(neighbors[i]);
-        this.visualizer.drawCell(neighbors[i], this.gapSize, "tomato");
+        this.visualizer.drawCell(neighbors[i], this.gapSize, "LightGray");
       }
       else if (directions[i] == "bottom" && !cell.hasBottom && !neighbors[i].hasTop) {
         reachableNeighbors.push(neighbors[i]);
-        this.visualizer.drawCell(neighbors[i], this.gapSize, "tomato");
+        this.visualizer.drawCell(neighbors[i], this.gapSize, "LightGray");
       }
       else if (directions[i] == "left" && !cell.hasLeft && !neighbors[i].hasRight) {
         reachableNeighbors.push(neighbors[i]);
-        this.visualizer.drawCell(neighbors[i], this.gapSize, "tomato");
+        this.visualizer.drawCell(neighbors[i], this.gapSize, "LightGray");
       }
     }
 

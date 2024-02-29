@@ -5,12 +5,12 @@ export default class Visualizer {
 		this.context = mazeContext;
 	}
 
-	async drawCellWithDelay(cell, gapSize, fillStyle = "white") {
+	async drawCellWithDelay(cell, gapSize, fillStyle = "white", delay = 0) {
 		return new Promise((resolve) => {
 			setTimeout(() => {
 				this.drawCell(cell, gapSize, fillStyle);
 				resolve();
-			}, 0);
+			}, delay);
 		});
 	}
 
