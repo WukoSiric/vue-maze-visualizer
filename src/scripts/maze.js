@@ -9,9 +9,10 @@ export default class Maze {
     this.gapSize = gapSize;
     this.context = canvasContext;
     this.visualizer = new Visualizer(canvasContext); 
+    this.stillGenerating = true;
   }
 
-  async initializeMaze() {
+  initializeMaze() {
     for (let col = 0; col < this.columns; col++) {
       let newColumn = [];
       for (let row = 0; row < this.rows; row++ ) {
@@ -24,7 +25,6 @@ export default class Maze {
     this.getNeighbors(0, 0);
     this.maze[0][0].isStart = true;
     this.maze[this.maze.length - 1][this.maze[0].length- 1].isFinish = true;
-    await this.generateMaze(0, 0, this.maze[0][0]);
   }
 
   async generateMaze(row, col, cell, visited = []) {
@@ -52,7 +52,10 @@ export default class Maze {
       row = previous_cell.col; //I dont know why theyre backwards
       col = previous_cell.row;
       this.generateMaze(row, col, previous_cell, visited);
-    } 
+    }
+    else {
+      this.setUnivisited();
+    }
   }
   
   getNeighbors(row, col) {
@@ -105,12 +108,26 @@ export default class Maze {
   }
 
   // Solve maze using depth first search
-  solveWithDFS(cell, visited = []) {
+  solveWithDFS() {
+    this.setUnivisited();
+
+  }
+
+  setUnivisited() {
+    for (let row = 0; row < this.maze.length; row++) {
+      for (let col = 0; col < this.maze[0].length; col++) {
+        this.maze[row][col].visited = false;
+      }
+    }
+  }
+
+  DFS(row, col, cell, visited = []) {
+
   }
 
   // Get neighbors can go to 
   getNeighborsTunnelTo(cell) {
-    let [neighbors, directions] = this.getNeighbors(cell.row, cell. col);
+    let [neighbors, directions] = this.getNeighbors(cell.row, cell.col);
     let reachableNeighbors = [];
 
     for (let i = 0; i < neighbors.length; i++) {

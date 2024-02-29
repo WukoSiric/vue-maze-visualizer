@@ -15,6 +15,8 @@ export default {
     this.columns= Math.floor(this.canvas.height / this.gapSize); 
     this.maze = new Maze(this.rows, this.columns, this.gapSize, this.context);
     this.maze.initializeMaze();
+    this.maze.generateMaze(0, 0, this.maze.maze[0][0]);
+    // const result = await this.maze.generateMaze(0, 0, this.maze.maze[0][0]);
   },
   methods: {
   }
