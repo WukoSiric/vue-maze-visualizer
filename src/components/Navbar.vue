@@ -41,6 +41,7 @@ export default {
         <input type="radio" value="random" id="random" checked />
         Random
       </label>
+      <button>Generate</button>
       <h1><i class="fa fa-map"></i> Solving</h1>
       <label class="radio-container">
         <input type="radio" value="dfs" id="dfs" name="solvingAlgorithm" checked />
@@ -50,6 +51,7 @@ export default {
         <input type="radio" value="bfs" id="bfs" name="solvingAlgorithm" />
         Breadth First Search
       </label>
+      <button>Solve</button>
     </div>
   </div>
 </template>
@@ -98,7 +100,6 @@ h1 {
 }
 
 /* Radio buttons */
-
 .radio-container {
   display: grid;
   background-color: #82998d;
@@ -122,6 +123,22 @@ input[type="radio"] {
   cursor: pointer;
   height: 0;
   width: 0;
+}
+
+/* Buttons */
+button {
+  color: white;
+  background-color: rgb(79, 79, 255);
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  border: none;
+  transition: all ease-in-out 0.05s;
+}
+
+button:hover {
+  background-color: rgb(57, 57, 253);
+  transform: scale(0.95);
 }
 
 /* Style for the checked state of the radio button */
