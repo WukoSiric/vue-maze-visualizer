@@ -10,7 +10,7 @@ export default class Visualizer {
 			setTimeout(() => {
 				this.drawCell(cell, gapSize, fillStyle);
 				resolve();
-			}, 1);
+			}, 0);
 		});
 	}
 

@@ -29,7 +29,6 @@ export default class Maze {
 
   async generateMaze(row, col, cell, visited = []) {
     cell.visited = true;
-  
     const [neighbors, directions] = this.getNeighbors(row, col);
   
     if (neighbors.length > 0) {
@@ -55,6 +54,7 @@ export default class Maze {
     }
     else {
       this.setUnivisited();
+      this.DFS(this.maze[0][0]);
     }
   }
   
@@ -110,7 +110,6 @@ export default class Maze {
   // Solve maze using depth first search
   solveWithDFS() {
     this.setUnivisited();
-
   }
 
   setUnivisited() {
@@ -121,27 +120,50 @@ export default class Maze {
     }
   }
 
-  DFS(row, col, cell, visited = []) {
+  DFS(cell, visited = []) {
+    if (cell.isFinish) {
+      console.log("Found the finish!");
+      return
+    }
 
+    cell.visited = true; 
+    const neighbors = this.getNeighborsTunnelTo(cell);
+    this.getNeighborsTunnelTo(this.maze[4][5]);
+
+    if (neighbors.length > 0) {
+      this.visualizer.drawCell(neighbors[0], this.gapSize, "orange");
+      visited.push(cell);
+      this.DFS(neighbors[0], visited);
+    }
+    else if (visited.length > 0) {
+      this.visualizer.drawCell(cell, this.gapSize);
+      let previous_cell = visited.pop(); 
+      this.DFS(previous_cell, visited);
+    }
   }
 
   // Get neighbors can go to 
   getNeighborsTunnelTo(cell) {
-    let [neighbors, directions] = this.getNeighbors(cell.row, cell.col);
+    // this.visualizer.drawCell(cell, this.gapSize, "cyan");
+    let [neighbors, directions] = this.getNeighbors(cell.col, cell.row);
     let reachableNeighbors = [];
 
     for (let i = 0; i < neighbors.length; i++) {
       if (directions[i] == "top" && !cell.hasTop && !neighbors[i].hasBottom) {
         reachableNeighbors.push(neighbors[i]);
+        this.visualizer.drawCell(neighbors[i], this.gapSize, "tomato");
       }
       else if (directions[i] == "right" && !cell.hasRight && !neighbors[i].hasLeft) {
         reachableNeighbors.push(neighbors[i]);
+        this.visualizer.drawCell(neighbors[i], this.gapSize, "tomato");
       }
       else if (directions[i] == "bottom" && !cell.hasBottom && !neighbors[i].hasTop) {
         reachableNeighbors.push(neighbors[i]);
+        this.visualizer.drawCell(neighbors[i], this.gapSize, "tomato");
       }
       else if (directions[i] == "left" && !cell.hasLeft && !neighbors[i].hasRight) {
         reachableNeighbors.push(neighbors[i]);
+        this.visualizer.drawCell(neighbors[i], this.gapSize, "tomato");
       }
     }
 
