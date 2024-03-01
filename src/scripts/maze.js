@@ -119,11 +119,9 @@ export default class Maze {
     this.setUnivisited(); 
     if (algorithmString === "BFS") {
       await this.BFS(); 
-      this.isSolving = false;
       return
     }
     await this.DFS(this.maze[0][0]);
-    this.isSolving = false; 
   }
 
   async BFS() {
@@ -142,6 +140,7 @@ export default class Maze {
           await this.visualizer.drawCellWithDelay(neighbor, this.gapSize, "Violet", 10);
           if (neighbor.isFinish) {
             console.log("Found the finish!");
+            this.isSolving = false;
             return;
           }
           queue.push(neighbor);
@@ -160,7 +159,7 @@ export default class Maze {
 
   async DFS(cell, visited = []) {
     if (cell.isFinish) {
-      console.log("Found the finish!");
+      this.isSolving = false;
       return
     }
 

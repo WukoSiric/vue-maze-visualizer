@@ -30,12 +30,26 @@ export default {
       this.mazeGridRef.generateMaze();
     },
     solveMaze(eventInfo = "DFS") {
+      this.$forceUpdate();
       const solvingAlgorithm = eventInfo;
       this.mazeGridRef.solveMaze(solvingAlgorithm);
     },
     updateIsMobile() {
       this.isMobile = window.innerWidth < 1024;
     },
+  },
+  computed: {
+    isGenerating() {
+      if (!this.mazeGridRef) return true; 
+      console.log("isGenerating", this.mazeGridRef.maze.isGenerating);
+      return this.mazeGridRef.getIsGenerating();
+    },
+    isSolving() {
+      if (!this.mazeGridRef) return false; 
+      console.log("isSolving", this.mazeGridRef.maze.isSolving);
+      console.log(this.mazeGridRef);
+      return this.mazeGridRef.getIsSolving();
+    }
   }
 };
 </script>
@@ -52,7 +66,8 @@ export default {
         <FloatingButton faClass="fa fa-play" :buttonFunction="solveMaze"></FloatingButton>
       </div>
     </div>
-    <ErrorPrompt message="This is an error message"></ErrorPrompt>
+    <ErrorPrompt v-if="isGenerating" message="Generating..."></ErrorPrompt>
+    <ErrorPrompt v-if="isSolving" message="Solving..."></ErrorPrompt>
   </main>
 </template>
 

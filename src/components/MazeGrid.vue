@@ -2,6 +2,9 @@
 import Maze from '@/scripts/maze';
 export default {
   data() {
+    return {
+      maze: null
+    }
   },
   mounted() {
     this.canvas = document.getElementById("maze");
@@ -26,15 +29,15 @@ export default {
     },
     solveMaze(solvingAlgorithm) {
       this.maze.solveMaze(solvingAlgorithm);
+    },
+    getIsGenerating() {
+      return this.maze.isGenerating;
+    },
+    getIsSolving() {
+      return this.maze.isSolving;
     }
   },
   computed: {
-    isGenerating () {
-      return this.maze.isGenerating;
-    },
-    isSolving () {
-      return this.maze.isSolving;
-    }
   }
 }
 </script>
