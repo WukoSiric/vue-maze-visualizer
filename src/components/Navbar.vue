@@ -49,10 +49,6 @@ export default {
     <!-- Maze Options -->
     <div v-if="!isMobile || menuExpanded" class="navbar-contents">
       <h1><i class="fa fa-plus-square"></i> Generation</h1>
-      <label class="radio-container">
-        <input type="radio" value="random" id="random" checked />
-        Random
-      </label>
       <button @click="generateMaze(); closeMenu()"><i class="fa fa-refresh"></i> Generate</button>
       <h1><i class="fa fa-map"></i> Solving</h1>
       <label class="radio-container">
