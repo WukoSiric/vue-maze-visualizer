@@ -13,6 +13,7 @@ export default class Maze {
   }
 
   initializeMaze() {
+    this.maze = [];
     for (let row = 0; row < this.rows; row++) {
       let newRow = [];
       for (let col = 0; col < this.columns; col++ ) {
@@ -40,8 +41,8 @@ export default class Maze {
       col = nextCell.col;
   
       this.updateWalls(cell, nextCell, direction);
-      await this.visualizer.drawCell(cell, this.gapSize);
-      await this.visualizer.drawCell(nextCell, this.gapSize);
+      await this.visualizer.drawCellWithDelay(cell, this.gapSize);
+      await this.visualizer.drawCellWithDelay(nextCell, this.gapSize);
   
       visited.push(cell);
       this.generateMaze(row, col, nextCell, visited);
@@ -51,9 +52,6 @@ export default class Maze {
       row = previous_cell.row;
       col = previous_cell.col;
       this.generateMaze(row, col, previous_cell, visited);
-    }
-    else {
-      this.solveMaze("DFS");
     }
   }
   

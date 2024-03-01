@@ -1,7 +1,5 @@
-<script setup>
-import Maze from '@/scripts/maze';
-</script>
 <script>
+import Maze from '@/scripts/maze';
 export default {
   data() {
   },
@@ -16,9 +14,12 @@ export default {
     this.maze = new Maze(this.rows, this.columns, this.gapSize, this.context);
     this.maze.initializeMaze();
     this.maze.generateMaze(0, 0, this.maze.maze[0][0]);
-    // const result = await this.maze.generateMaze(0, 0, this.maze.maze[0][0]);
   },
   methods: {
+    generateMaze() {
+      this.maze.initializeMaze();
+      this.maze.generateMaze(0, 0, this.maze.maze[0][0]);
+    }
   }
 }
 </script>

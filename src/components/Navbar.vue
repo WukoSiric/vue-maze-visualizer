@@ -1,5 +1,6 @@
 <script>
 export default {
+  props: [],
   data() {
     return {
       menuExpanded: false,
@@ -15,6 +16,9 @@ export default {
       if (this.isMobile) {
         this.menuExpanded = false;
       }
+    },
+    generateMaze() {
+      this.$emit('generateMaze');
     }
   },
   mounted() {
@@ -41,7 +45,7 @@ export default {
         <input type="radio" value="random" id="random" checked />
         Random
       </label>
-      <button>Generate</button>
+      <button @click="generateMaze">Generate</button>
       <h1><i class="fa fa-map"></i> Solving</h1>
       <label class="radio-container">
         <input type="radio" value="dfs" id="dfs" name="solvingAlgorithm" checked />
