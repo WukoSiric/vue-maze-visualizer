@@ -36,6 +36,10 @@ export default {
 </template>
 
 <style>
+
+canvas {
+  box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.2);
+}
 @media(max-width: 1024px) {
   canvas {
     display: block;
