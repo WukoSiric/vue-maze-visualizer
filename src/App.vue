@@ -44,10 +44,10 @@ export default {
   </header>
   <main>
     <MazeGrid ref="mazeGridRef"></MazeGrid>
-    <div class="floatingButtons" :class="{ hidden: !isMobile}">
+    <div :class="[!isMobile ? 'hidden' : 'floatingButtons']">
       <div class="buttonsContainer">
-        <FloatingButton buttonText="Generate" :buttonFunction="generateMaze"></FloatingButton>
-        <FloatingButton buttonText="Solve" :buttonFunction="solveMaze"></FloatingButton>
+        <FloatingButton faClass="fa fa-refresh" :buttonFunction="generateMaze"></FloatingButton>
+        <FloatingButton faClass="fa fa-play" :buttonFunction="solveMaze"></FloatingButton>
       </div>
     </div>
   </main>
@@ -58,16 +58,15 @@ export default {
   display: none;
 }
 .floatingButtons {
+  display: flex;
   position: fixed;
   bottom: 0;
-  left: 0;
-  display: flex;
+  right: 0;
   justify-content: center;
   align-items: center;
   gap: 10px;
   padding: 10px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-
 }
 
 .buttonsContainer {
