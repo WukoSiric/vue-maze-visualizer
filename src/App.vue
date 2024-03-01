@@ -65,8 +65,8 @@ export default {
         <FloatingButton faClass="fa fa-play" :buttonFunction="solveMaze"></FloatingButton>
       </div>
     </div>
-    <ErrorPrompt v-if="isGenerating" message="Generating..."></ErrorPrompt>
-    <ErrorPrompt v-if="isSolving" message="Solving..."></ErrorPrompt>
+    <ErrorPrompt :isVisible="isGenerating" message="Generating..."></ErrorPrompt>
+    <ErrorPrompt :isVisible="isSolving" message="Solving..."></ErrorPrompt>
   </main>
 </template>
 
@@ -74,6 +74,7 @@ export default {
 .hidden {
   display: none;
 }
+
 .floatingButtons {
   display: flex;
   position: fixed;
