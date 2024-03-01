@@ -9,10 +9,12 @@ export default class Maze {
     this.gapSize = gapSize;
     this.context = canvasContext;
     this.visualizer = new Visualizer(canvasContext); 
-    this.stillGenerating = true;
+    this.isGenerating = false;
+    this.isSolving = false;
   }
 
   initializeMaze() {
+    this.isGenerating = true;
     this.maze = [];
     for (let row = 0; row < this.rows; row++) {
       let newRow = [];
@@ -29,6 +31,11 @@ export default class Maze {
   }
 
   async generateMaze(row, col, cell, visited = []) {
+    if (this.isSolving) {
+      console.log("Solving, cannot generate at the moment!");
+      return
+    }
+    
     cell.visited = true;
     const [neighbors, directions] = this.getNeighbors(row, col);
   
@@ -52,6 +59,9 @@ export default class Maze {
       row = previous_cell.row;
       col = previous_cell.col;
       this.generateMaze(row, col, previous_cell, visited);
+    }
+    else {
+      this.isGenerating = false;
     }
   }
   
@@ -100,12 +110,19 @@ export default class Maze {
   }
 
   async solveMaze(algorithmString) {
+    if (this.isGenerating) {
+      console.log("still generating, cannot solve yet!");
+      return
+    } 
+    this.isSolving = true;
+
     this.setUnivisited(); 
     if (algorithmString === "BFS") {
       this.BFS(); 
       return
     }
-    this.DFS(this.maze[0][0]);
+    await this.DFS(this.maze[0][0]);
+    this.isSolving = false; 
   }
 
   async BFS() {
