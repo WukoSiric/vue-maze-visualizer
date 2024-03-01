@@ -1,41 +1,39 @@
-# vue-maze-visualizer
+# Vue Maze Visualizer
 
-This template should help get you started developing with Vue 3 in Vite.
+## Overview
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+This project is a simple maze visualizer built using Vue.js. The maze is generated using a recursive backtracking algorithm. The visualizer allows the user to generate a new maze and solve it using either a depth-first search or a breadth-first search algorithm.
 
 ## Project Setup
 
-```sh
-npm install
-```
+### Prerequisites
+To start, you must have the following installed on your local machine:
+- Node.js
+- npm
+- Git
 
-### Compile and Hot-Reload for Development
 
-```sh
-npm run dev
-```
+### Setup
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/WukoSiric/vue-maze-visualizer.git
+   ```
+2. **Change to the project directory:**
+   ```bash
+    cd vue-maze-visualizer
+   ```
 
-### Compile and Minify for Production
+3. **Install the dependencies:**
+   ```bash
+    npm install
+    ```
 
-```sh
-npm run build
-```
+4. **Run the application:**
+    ```bash
+     npm run dev
+    ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+## Project Structure and Key Features
+- **Cell**: Represents a single cell in the maze. Contains information about the cell's position, walls, and visited status.
+- **Maze**: Represents the maze. Contains information about the maze's dimensions, cells, and methods to generate the maze.
+- **Visualizer**: The main component that renders the maze modifying a HTML Canvas element.
