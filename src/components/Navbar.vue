@@ -1,5 +1,6 @@
 <script>
 export default {
+  emits: ['solveMaze', 'generateMaze'],
   props: [],
   data() {
     return {
