@@ -118,7 +118,8 @@ export default class Maze {
 
     this.setUnivisited(); 
     if (algorithmString === "BFS") {
-      this.BFS(); 
+      await this.BFS(); 
+      this.isSolving = false;
       return
     }
     await this.DFS(this.maze[0][0]);
