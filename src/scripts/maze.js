@@ -53,8 +53,8 @@ export default class Maze {
       this.generateMaze(row, col, previous_cell, visited);
     }
     else {
-      // this.setUnivisited();
-      // this.DFS(this.maze[0][0]);
+      this.setUnivisited();
+      this.DFS(this.maze[0][0]);
     }
   }
   
@@ -139,7 +139,7 @@ export default class Maze {
   // Get neighbors can go to 
   getNeighborsTunnelTo(cell) {
     // this.visualizer.drawCell(cell, this.gapSize, "cyan");
-    let [neighbors, directions] = this.getNeighbors(cell.col, cell.row);
+    let [neighbors, directions] = this.getNeighbors(cell.row, cell.col);
     let reachableNeighbors = [];
 
     for (let i = 0; i < neighbors.length; i++) {
