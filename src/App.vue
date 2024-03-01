@@ -30,7 +30,7 @@ const mazeGridRef = ref(null);
   @media (min-width: 1024px) {
     main {
       padding-left: 80px;
-      margin: 4% 120px;
+      margin: 4% 110px;
     }
   }
 

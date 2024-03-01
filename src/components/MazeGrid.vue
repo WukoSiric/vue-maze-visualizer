@@ -10,8 +10,9 @@ export default {
     this.canvas.height = window.innerHeight - 150;
     this.gapSize = Math.floor(this.canvas.width / 10);
     if (this.canvas.width > 1024) {
-      this.gapSize = 30;
+      this.gapSize = 40;
     }
+    this.canvas.width -= this.canvas.width % this.gapSize;
     this.rows = Math.floor(this.canvas.width / this.gapSize);
     this.columns = Math.floor(this.canvas.height / this.gapSize);
     this.maze = new Maze(this.rows, this.columns, this.gapSize, this.context);
