@@ -5,11 +5,24 @@ import FloatingButton from './components/FloatingButton.vue';
 import ErrorPrompt from './components/ErrorPrompt.vue';
 
 export default {
+  components: {
+    NavBar,
+    MazeGrid,
+    FloatingButton,
+    ErrorPrompt
+  },
   data() {
     return {
       mazeGridRef: null,
       isMobile: window.innerWidth < 1024,
     };
+  },
+  mounted() {
+    this.mazeGridRef = this.$refs.mazeGridRef;
+    window.addEventListener('resize', this.updateIsMobile);
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.updateIsMobile);
   },
   methods: {
     generateMaze() {
@@ -23,20 +36,7 @@ export default {
     updateIsMobile() {
       this.isMobile = window.innerWidth < 1024;
     },
-  },
-  mounted() {
-    this.mazeGridRef = this.$refs.mazeGridRef;
-    window.addEventListener('resize', this.updateIsMobile);
-  },
-  unmounted() {
-    window.removeEventListener('resize', this.updateIsMobile);
-  },
-  components: {
-    NavBar,
-    MazeGrid,
-    FloatingButton,
-    ErrorPrompt
-},
+  }
 };
 </script>
 
