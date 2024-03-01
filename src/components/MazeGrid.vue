@@ -27,6 +27,14 @@ export default {
     solveMaze(solvingAlgorithm) {
       this.maze.solveMaze(solvingAlgorithm);
     }
+  },
+  computed: {
+    isGenerating () {
+      return this.maze.isGenerating;
+    },
+    isSolving () {
+      return this.maze.isSolving;
+    }
   }
 }
 </script>
