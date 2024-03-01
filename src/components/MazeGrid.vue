@@ -13,9 +13,10 @@ export default {
       this.gapSize = 30;
     }
     this.rows = Math.floor(this.canvas.width / this.gapSize);
-    this.columns= Math.floor(this.canvas.height / this.gapSize); 
+    this.columns = Math.floor(this.canvas.height / this.gapSize);
     this.maze = new Maze(this.rows, this.columns, this.gapSize, this.context);
     this.maze.initializeMaze();
+    this.maze.generateMaze(0, 0, this.maze.maze[0][0]);
   },
   methods: {
     generateMaze() {
@@ -33,11 +34,11 @@ export default {
 </template>
 
 <style>
-  @media(max-width: 1024px) {
-    canvas {
-      display:block;
-      margin: auto;
-      margin-top: 30%;
-    }
+@media(max-width: 1024px) {
+  canvas {
+    display: block;
+    margin: auto;
+    margin-top: 30%;
   }
+}
 </style>
