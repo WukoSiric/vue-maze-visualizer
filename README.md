@@ -4,6 +4,9 @@
 
 This project is a simple maze visualizer built using Vue.js. The maze is generated using a recursive backtracking algorithm. The visualizer allows the user to generate a new maze and solve it using either a depth-first search or a breadth-first search algorithm.
 
+![image](https://github.com/WukoSiric/vue-maze-visualizer/assets/72187847/88bfd24a-0b41-4d62-977d-7f8196a19396)
+
+
 ## Project Setup
 
 ### Prerequisites
