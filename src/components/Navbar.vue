@@ -9,6 +9,12 @@ export default {
       solvingAlgorithm: 'DFS'
     };
   },
+  mounted() {
+    window.addEventListener('resize', this.updateIsMobile);
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.updateIsMobile);
+  },
   methods: {
     toggleMenu() {
       this.menuExpanded = !this.menuExpanded;
@@ -28,12 +34,6 @@ export default {
     solveMaze() {
       this.$emit('solveMaze', this.solvingAlgorithm);
     }
-  },
-  mounted() {
-    window.addEventListener('resize', this.updateIsMobile);
-  },
-  unmounted() {
-    window.removeEventListener('resize', this.updateIsMobile);
   }
 }
 </script>
