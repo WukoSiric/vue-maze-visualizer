@@ -27,15 +27,10 @@ const mazeGridRef = ref(null);
 
 <style scoped>
 
-  main {
-    padding-top: 50px;
-    margin: 7% 10%;
-  }
-
   @media (min-width: 1024px) {
     main {
       padding-left: 80px;
-      margin: 0% 120px;
+      margin: 4% 120px;
     }
   }
 

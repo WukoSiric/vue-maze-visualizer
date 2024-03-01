@@ -8,7 +8,10 @@ export default {
     this.context = this.canvas.getContext("2d");
     this.canvas.width = window.innerWidth - 200;
     this.canvas.height = window.innerHeight - 150;
-    this.gapSize = 30;
+    this.gapSize = this.canvas.width / 10;
+    if (this.canvas.width > 1024) {
+      this.gapSize = 30;
+    }
     this.rows = Math.floor(this.canvas.width / this.gapSize);
     this.columns= Math.floor(this.canvas.height / this.gapSize); 
     this.maze = new Maze(this.rows, this.columns, this.gapSize, this.context);
@@ -30,4 +33,11 @@ export default {
 </template>
 
 <style>
+  @media(max-width: 1024px) {
+    canvas {
+      display:block;
+      margin: auto;
+      margin-top: 30%;
+    }
+  }
 </style>

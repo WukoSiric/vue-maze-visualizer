@@ -13,6 +13,9 @@ export default {
     toggleMenu() {
       this.menuExpanded = !this.menuExpanded;
     },
+    closeMenu() {
+      this.menuExpanded = false;
+    },
     updateIsMobile() {
       this.isMobile = window.innerWidth < 1024;
       if (this.isMobile) {
@@ -50,7 +53,7 @@ export default {
         <input type="radio" value="random" id="random" checked />
         Random
       </label>
-      <button @click="generateMaze">Generate</button>
+      <button @click="generateMaze(); closeMenu()">Generate</button>
       <h1><i class="fa fa-map"></i> Solving</h1>
       <label class="radio-container">
         <input type="radio" v-model="solvingAlgorithm" value="DFS" id="dfs" name="solvingAlgorithm" checked />
@@ -60,7 +63,7 @@ export default {
         <input type="radio" v-model="solvingAlgorithm" value="BFS" id="bfs" name="solvingAlgorithm" />
         Breadth First Search
       </label>
-      <button @click="solveMaze">Solve</button>
+      <button @click="solveMaze(); closeMenu()">Solve</button>
     </div>
   </div>
 </template>
