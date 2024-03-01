@@ -13,18 +13,18 @@ export default class Maze {
   }
 
   initializeMaze() {
-    for (let col = 0; col < this.columns; col++) {
-      let newColumn = [];
-      for (let row = 0; row < this.rows; row++ ) {
+    for (let row = 0; row < this.rows; row++) {
+      let newRow = [];
+      for (let col = 0; col < this.columns; col++ ) {
         let cell = new Cell(row, col);
-        newColumn.push(cell);
+        newRow.push(cell);
         this.visualizer.drawCell(cell, this.gapSize, "grey"); // Draw cell with delay
       }
-      this.maze.push(newColumn);
+      this.maze.push(newRow);
     }
     this.getNeighbors(0, 0);
     this.maze[0][0].isStart = true;
-    this.maze[this.maze.length - 1][this.maze[0].length- 1].isFinish = true;
+    this.maze[this.maze.length - 1][this.maze[0].length - 1].isFinish = true;
   }
 
   async generateMaze(row, col, cell, visited = []) {
@@ -36,20 +36,20 @@ export default class Maze {
       const nextCell = neighbors[randomIndex];
       const direction = directions[randomIndex];
 
-      row = nextCell.col; //I dont know why theyre backwards
-      col = nextCell.row;
+      row = nextCell.row;
+      col = nextCell.col;
   
       this.updateWalls(cell, nextCell, direction);
-      await this.visualizer.drawCell(cell, this.gapSize);
-      await this.visualizer.drawCell(nextCell, this.gapSize);
+      await this.visualizer.drawCellWithDelay(cell, this.gapSize);
+      await this.visualizer.drawCellWithDelay(nextCell, this.gapSize);
   
       visited.push(cell);
       this.generateMaze(row, col, nextCell, visited);
     } 
     else if (visited.length > 0) {
       let previous_cell = visited.pop(); 
-      row = previous_cell.col; //I dont know why theyre backwards
-      col = previous_cell.row;
+      row = previous_cell.row;
+      col = previous_cell.col;
       this.generateMaze(row, col, previous_cell, visited);
     }
     else {
@@ -62,31 +62,26 @@ export default class Maze {
     const neighbors = [];
     const directions = [];
   
-    // Check top neighbor
     if (row - 1 >= 0 && !this.maze[row - 1][col].visited) {
       neighbors.push(this.maze[row - 1][col]);
-      directions.push("top");
-    }
-
-    // Check right neighbor 
-    if (col + 1 < this.maze[0].length && !this.maze[row][col+1].visited) {
-      neighbors.push(this.maze[row][col + 1]);
-      directions.push("right");  
-    }
-
-    // Check bottom neighbor 
-    if (row + 1 < this.maze.length && !this.maze[row + 1][col].visited) {
-      neighbors.push(this.maze[row + 1][col]);
-      directions.push("bottom");
-    }
-
-    // Check left neighbor
-    if (col - 1 >= 0 && !this.maze[row][col - 1].visited) {
-      neighbors.push(this.maze[row][col - 1]);
       directions.push("left");
     }
+
+    if (col + 1 < this.maze[0].length && !this.maze[row][col+1].visited) {
+      neighbors.push(this.maze[row][col + 1]);
+      directions.push("bottom");  
+    }
+
+    if (row + 1 < this.maze.length && !this.maze[row + 1][col].visited) {
+      neighbors.push(this.maze[row + 1][col]);
+      directions.push("right");
+    }
+
+    if (col - 1 >= 0 && !this.maze[row][col - 1].visited) {
+      neighbors.push(this.maze[row][col - 1]);
+      directions.push("top");
+    }
   
-    // this.visualizer.colorCell(this.maze[row][col], this.gapSize, "blue");
     return [neighbors, directions];
   }
 
@@ -144,7 +139,7 @@ export default class Maze {
   // Get neighbors can go to 
   getNeighborsTunnelTo(cell) {
     // this.visualizer.drawCell(cell, this.gapSize, "cyan");
-    let [neighbors, directions] = this.getNeighbors(cell.col, cell.row);
+    let [neighbors, directions] = this.getNeighbors(cell.row, cell.col);
     let reachableNeighbors = [];
 
     for (let i = 0; i < neighbors.length; i++) {
