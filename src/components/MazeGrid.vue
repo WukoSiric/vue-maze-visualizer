@@ -29,15 +29,15 @@ export default {
     },
     solveMaze(solvingAlgorithm) {
       this.maze.solveMaze(solvingAlgorithm);
-    },
-    getIsGenerating() {
-      return this.maze.isGenerating;
-    },
-    getIsSolving() {
-      return this.maze.isSolving;
     }
   },
   computed: {
+    isGenerating() {
+      return this.maze.isGenerating;
+    },
+    isSolving() {
+      return this.maze.isSolving;
+    }
   }
 }
 </script>

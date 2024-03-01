@@ -42,13 +42,12 @@ export default {
     isGenerating() {
       if (!this.mazeGridRef) return true; 
       console.log("isGenerating", this.mazeGridRef.maze.isGenerating);
-      return this.mazeGridRef.getIsGenerating();
+      return this.mazeGridRef.isGenerating;
     },
     isSolving() {
       if (!this.mazeGridRef) return false; 
       console.log("isSolving", this.mazeGridRef.maze.isSolving);
-      console.log(this.mazeGridRef);
-      return this.mazeGridRef.getIsSolving();
+      return this.mazeGridRef.isSolving;
     }
   }
 };
