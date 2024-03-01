@@ -1,14 +1,27 @@
 <script setup>
 import NavBar from './components/NavBar.vue'
 import MazeGrid from './components/MazeGrid.vue';
+import { ref } from 'vue';
+
+const generateMaze = () => {
+  console.log('Generating maze');
+  mazeGridRef.value.generateMaze();
+}
+
+const solveMaze = (eventInfo) => {
+  const solvingAlgorithm = eventInfo;
+  mazeGridRef.value.solveMaze(solvingAlgorithm);
+}
+
+const mazeGridRef = ref(null);
 </script>
 
 <template>
   <header>
-    <NavBar></NavBar>
+    <NavBar @solve-maze="solveMaze" @generate-maze="generateMaze"></NavBar>
   </header>
   <main>
-    <MazeGrid></MazeGrid>
+    <MazeGrid ref="mazeGridRef"></MazeGrid>
   </main>
 </template>
 
