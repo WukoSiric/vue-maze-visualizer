@@ -8,7 +8,7 @@ export default {
     this.context = this.canvas.getContext("2d");
     this.canvas.width = window.innerWidth - 200;
     this.canvas.height = window.innerHeight - 150;
-    this.gapSize = this.canvas.width / 10;
+    this.gapSize = Math.floor(this.canvas.width / 10);
     if (this.canvas.width > 1024) {
       this.gapSize = 30;
     }
