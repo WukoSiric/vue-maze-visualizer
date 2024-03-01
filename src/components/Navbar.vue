@@ -138,7 +138,8 @@ button {
 
 button:hover {
   background-color: rgb(57, 57, 253);
-  transform: scale(0.95);
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 /* Style for the checked state of the radio button */
