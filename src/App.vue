@@ -2,6 +2,7 @@
 import NavBar from './components/NavBar.vue'
 import MazeGrid from './components/MazeGrid.vue';
 import FloatingButton from './components/FloatingButton.vue';
+import ErrorPrompt from './components/ErrorPrompt.vue';
 
 export default {
   data() {
@@ -34,7 +35,8 @@ export default {
     NavBar,
     MazeGrid,
     FloatingButton,
-  },
+    ErrorPrompt
+},
 };
 </script>
 
@@ -50,6 +52,7 @@ export default {
         <FloatingButton faClass="fa fa-play" :buttonFunction="solveMaze"></FloatingButton>
       </div>
     </div>
+    <ErrorPrompt message="This is an error message"></ErrorPrompt>
   </main>
 </template>
 
@@ -68,7 +71,6 @@ export default {
   padding: 10px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
-
 .buttonsContainer {
   display: flex;
   flex-direction: column;
