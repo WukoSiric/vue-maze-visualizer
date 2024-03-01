@@ -18,7 +18,7 @@ export default class Maze {
       for (let col = 0; col < this.columns; col++ ) {
         let cell = new Cell(row, col);
         newRow.push(cell);
-        this.visualizer.drawCell(cell, this.gapSize, "grey"); // Draw cell with delay
+        this.visualizer.drawCell(cell, this.gapSize, "grey");
       }
       this.maze.push(newRow);
     }
@@ -40,8 +40,8 @@ export default class Maze {
       col = nextCell.col;
   
       this.updateWalls(cell, nextCell, direction);
-      await this.visualizer.drawCellWithDelay(cell, this.gapSize);
-      await this.visualizer.drawCellWithDelay(nextCell, this.gapSize);
+      await this.visualizer.drawCell(cell, this.gapSize);
+      await this.visualizer.drawCell(nextCell, this.gapSize);
   
       visited.push(cell);
       this.generateMaze(row, col, nextCell, visited);
@@ -54,7 +54,7 @@ export default class Maze {
     }
     else {
       this.setUnivisited();
-      this.DFS(this.maze[0][0]);
+      this.BFS();
     }
   }
   
@@ -103,8 +103,28 @@ export default class Maze {
   }
 
   // Solve maze using depth first search
-  solveWithDFS() {
-    this.setUnivisited();
+  async BFS() {
+    const queue = [];
+    const startCell = this.maze[0][0];
+    queue.push(this.maze[0][0]);
+
+    while (queue.length > 0) {
+      const currentCell = queue.shift(); 
+      const neighbors = this.getNeighborsTunnelTo(currentCell);
+      await this.visualizer.drawCellWithDelay(currentCell, this.gapSize, "SlateBlue", 10);
+
+      for (let neighbor of neighbors) {
+        if (!neighbor.visited) {
+          neighbor.visited = true;
+          await this.visualizer.drawCellWithDelay(neighbor, this.gapSize, "Violet", 10);
+          if (neighbor.isFinish) {
+            console.log("Found the finish!");
+            return;
+          }
+          queue.push(neighbor);
+        }
+      }
+    }
   }
 
   setUnivisited() {
@@ -136,9 +156,8 @@ export default class Maze {
     }
   }
 
-  // Get neighbors can go to 
+
   getNeighborsTunnelTo(cell) {
-    // this.visualizer.drawCell(cell, this.gapSize, "cyan");
     let [neighbors, directions] = this.getNeighbors(cell.row, cell.col);
     let reachableNeighbors = [];
 
