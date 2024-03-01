@@ -53,8 +53,7 @@ export default class Maze {
       this.generateMaze(row, col, previous_cell, visited);
     }
     else {
-      this.setUnivisited();
-      this.BFS();
+      this.solveMaze("DFS");
     }
   }
   
@@ -102,7 +101,15 @@ export default class Maze {
     return [fromCell, toCell];
   }
 
-  // Solve maze using depth first search
+  async solveMaze(algorithmString) {
+    this.setUnivisited(); 
+    if (algorithmString === "BFS") {
+      this.BFS(); 
+      return
+    }
+    this.DFS(this.maze[0][0]);
+  }
+
   async BFS() {
     const queue = [];
     const startCell = this.maze[0][0];
