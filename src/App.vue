@@ -8,12 +8,17 @@ const generateMaze = () => {
   mazeGridRef.value.generateMaze();
 }
 
+const solveMaze = (eventInfo) => {
+  const solvingAlgorithm = eventInfo;
+  console.log('Solving maze with algorithm: ', eventInfo);
+}
+
 const mazeGridRef = ref(null);
 </script>
 
 <template>
   <header>
-    <NavBar @generate-maze="generateMaze"></NavBar>
+    <NavBar @solve-maze="solveMaze" @generate-maze="generateMaze"></NavBar>
   </header>
   <main>
     <MazeGrid ref="mazeGridRef"></MazeGrid>

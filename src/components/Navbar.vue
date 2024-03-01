@@ -4,7 +4,8 @@ export default {
   data() {
     return {
       menuExpanded: false,
-      isMobile: window.innerWidth < 1024
+      isMobile: window.innerWidth < 1024,
+      solvingAlgorithm: 'DFS'
     };
   },
   methods: {
@@ -19,6 +20,9 @@ export default {
     },
     generateMaze() {
       this.$emit('generateMaze');
+    },
+    solveMaze() {
+      this.$emit('solveMaze', this.solvingAlgorithm);
     }
   },
   mounted() {
@@ -48,14 +52,14 @@ export default {
       <button @click="generateMaze">Generate</button>
       <h1><i class="fa fa-map"></i> Solving</h1>
       <label class="radio-container">
-        <input type="radio" value="dfs" id="dfs" name="solvingAlgorithm" checked />
+        <input type="radio" v-model="solvingAlgorithm" value="DFS" id="dfs" name="solvingAlgorithm" checked />
         Depth First Search
       </label>
       <label class="radio-container">
-        <input type="radio" value="bfs" id="bfs" name="solvingAlgorithm" />
+        <input type="radio" v-model="solvingAlgorithm" value="BFS" id="bfs" name="solvingAlgorithm" />
         Breadth First Search
       </label>
-      <button>Solve</button>
+      <button @click="solveMaze">Solve</button>
     </div>
   </div>
 </template>
