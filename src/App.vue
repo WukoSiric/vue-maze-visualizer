@@ -2,14 +2,14 @@
 import NavBar from './components/NavBar.vue'
 import MazeGrid from './components/MazeGrid.vue';
 import FloatingButton from './components/FloatingButton.vue';
-import ErrorPrompt from './components/ErrorPrompt.vue';
+import StatusPrompt from './components/StatusPrompt.vue';
 
 export default {
   components: {
     NavBar,
     MazeGrid,
     FloatingButton,
-    ErrorPrompt
+    StatusPrompt
   },
   data() {
     return {
@@ -65,8 +65,8 @@ export default {
         <FloatingButton faClass="fa fa-play" :buttonFunction="solveMaze"></FloatingButton>
       </div>
     </div>
-    <ErrorPrompt :isVisible="isGenerating" message="Generating..."></ErrorPrompt>
-    <ErrorPrompt :isVisible="isSolving" message="Solving..."></ErrorPrompt>
+    <StatusPrompt :isVisible="isGenerating" message="Generating..."></StatusPrompt>
+    <StatusPrompt :isVisible="isSolving" message="Solving..."></StatusPrompt>
   </main>
 </template>
 
