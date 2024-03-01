@@ -2,26 +2,20 @@
 import NavBar from './components/NavBar.vue'
 import MazeGrid from './components/MazeGrid.vue';
 import FloatingButton from './components/FloatingButton.vue';
+import StatusPrompt from './components/StatusPrompt.vue';
 
 export default {
+  components: {
+    NavBar,
+    MazeGrid,
+    FloatingButton,
+    StatusPrompt
+  },
   data() {
     return {
       mazeGridRef: null,
       isMobile: window.innerWidth < 1024,
     };
-  },
-  methods: {
-    generateMaze() {
-      console.log('Generating maze');
-      this.mazeGridRef.generateMaze();
-    },
-    solveMaze(eventInfo = "DFS") {
-      const solvingAlgorithm = eventInfo;
-      this.mazeGridRef.solveMaze(solvingAlgorithm);
-    },
-    updateIsMobile() {
-      this.isMobile = window.innerWidth < 1024;
-    },
   },
   mounted() {
     this.mazeGridRef = this.$refs.mazeGridRef;
@@ -30,11 +24,32 @@ export default {
   unmounted() {
     window.removeEventListener('resize', this.updateIsMobile);
   },
-  components: {
-    NavBar,
-    MazeGrid,
-    FloatingButton,
+  methods: {
+    generateMaze() {
+      console.log('Generating maze');
+      this.mazeGridRef.generateMaze();
+    },
+    solveMaze(eventInfo = "DFS") {
+      this.$forceUpdate();
+      const solvingAlgorithm = eventInfo;
+      this.mazeGridRef.solveMaze(solvingAlgorithm);
+    },
+    updateIsMobile() {
+      this.isMobile = window.innerWidth < 1024;
+    },
   },
+  computed: {
+    isGenerating() {
+      if (!this.mazeGridRef) return true; 
+      console.log("isGenerating", this.mazeGridRef.maze.isGenerating);
+      return this.mazeGridRef.isGenerating;
+    },
+    isSolving() {
+      if (!this.mazeGridRef) return false; 
+      console.log("isSolving", this.mazeGridRef.maze.isSolving);
+      return this.mazeGridRef.isSolving;
+    }
+  }
 };
 </script>
 
@@ -50,6 +65,8 @@ export default {
         <FloatingButton faClass="fa fa-play" :buttonFunction="solveMaze"></FloatingButton>
       </div>
     </div>
+    <StatusPrompt :isVisible="isGenerating" message="Generating..."></StatusPrompt>
+    <StatusPrompt :isVisible="isSolving" message="Solving..."></StatusPrompt>
   </main>
 </template>
 
@@ -57,6 +74,7 @@ export default {
 .hidden {
   display: none;
 }
+
 .floatingButtons {
   display: flex;
   position: fixed;
@@ -68,7 +86,6 @@ export default {
   padding: 10px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
-
 .buttonsContainer {
   display: flex;
   flex-direction: column;
