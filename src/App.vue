@@ -10,7 +10,7 @@ const generateMaze = () => {
 
 const solveMaze = (eventInfo) => {
   const solvingAlgorithm = eventInfo;
-  console.log('Solving maze with algorithm: ', eventInfo);
+  mazeGridRef.value.solveMaze(solvingAlgorithm);
 }
 
 const mazeGridRef = ref(null);

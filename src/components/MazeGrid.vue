@@ -19,6 +19,9 @@ export default {
     generateMaze() {
       this.maze.initializeMaze();
       this.maze.generateMaze(0, 0, this.maze.maze[0][0]);
+    },
+    solveMaze(solvingAlgorithm) {
+      this.maze.solveMaze(solvingAlgorithm);
     }
   }
 }
