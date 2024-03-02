@@ -13,8 +13,17 @@ export default class Maze {
     this.isSolving = false;
   }
 
-  initializeMaze() {
+  handleGenerateMaze() {
+    if (this.isGenerating || this.isSolving) {
+      console.log("Already generating..."); 
+      return
+    }
     this.isGenerating = true;
+    this.initializeMaze();
+    this.generateMaze(0, 0, this.maze[0][0]);
+  }
+
+  initializeMaze() {
     this.maze = [];
     for (let row = 0; row < this.rows; row++) {
       let newRow = [];
@@ -110,7 +119,7 @@ export default class Maze {
   }
 
   async solveMaze(algorithmString) {
-    if (this.isGenerating) {
+    if (this.isGenerating || this.isSolving) {
       console.log("still generating, cannot solve yet!");
       return
     } 
