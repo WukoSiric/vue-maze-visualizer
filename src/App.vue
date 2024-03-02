@@ -26,7 +26,6 @@ export default {
   },
   methods: {
     generateMaze() {
-      console.log('Generating maze');
       this.mazeGridRef.generateMaze();
     },
     solveMaze(eventInfo = "DFS") {
@@ -41,12 +40,10 @@ export default {
   computed: {
     isGenerating() {
       if (!this.mazeGridRef) return true; 
-      console.log("isGenerating", this.mazeGridRef.maze.isGenerating);
       return this.mazeGridRef.isGenerating;
     },
     isSolving() {
       if (!this.mazeGridRef) return false; 
-      console.log("isSolving", this.mazeGridRef.maze.isSolving);
       return this.mazeGridRef.isSolving;
     }
   }
