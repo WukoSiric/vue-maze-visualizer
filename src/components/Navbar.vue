@@ -142,6 +142,7 @@ button {
   font-weight: bold;
   border: none;
   transition: all ease-in-out 0.05s;
+  user-select: none;
 }
 
 button:hover {
