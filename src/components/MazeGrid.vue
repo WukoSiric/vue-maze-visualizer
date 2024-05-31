@@ -52,9 +52,9 @@ export default {
 canvas {
   box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.2);
 }
-@media(max-width: 1024px) {
+@media(max-width: 768px) {
   canvas {
-    display: block;
+    display: inline;
     margin: auto;
   }
 }

@@ -66,6 +66,11 @@ export default {
 </template>
 
 <style scoped>
+
+.container {
+  display: grid;
+  height: 100vh;
+}
 .hidden {
   display: none;
 }
@@ -89,7 +94,6 @@ export default {
 
 @media (min-width: 768px) {
   .container {
-    display: grid;
     grid-template: 
     "1fr 1fr";
     height: 100vh;

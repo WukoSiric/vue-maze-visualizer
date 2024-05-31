@@ -80,7 +80,6 @@ a,
   grid-template-columns: 1fr;
   background-color: rgba(0, 0, 0, 0.432);
   backdrop-filter: blur(10px);
-  position: sticky;
   top: 0;
   width: 100%;
   justify-items: center;
