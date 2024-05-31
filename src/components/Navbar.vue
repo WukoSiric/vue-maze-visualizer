@@ -79,7 +79,7 @@ a,
   display: grid;
   grid-template-columns: 1fr;
   background-color: rgb(51, 51, 51);
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
   justify-items: center;

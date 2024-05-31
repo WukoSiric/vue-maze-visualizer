@@ -53,8 +53,6 @@ canvas {
   canvas {
     display: block;
     margin: auto;
-    margin-top: 30%;
-    margin-bottom: 5%;
   }
 }
 </style>
