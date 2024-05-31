@@ -47,7 +47,8 @@ export default {
 <style>
 
 #maze {
-  opacity: 80%; 
+  opacity: 90%; 
+  backdrop-filter: blur(2px);
 }
 canvas {
   box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.2);

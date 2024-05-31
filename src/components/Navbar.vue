@@ -78,7 +78,7 @@ a,
 .navbar {
   display: grid;
   grid-template-columns: 1fr;
-  background-color: rgba(0, 0, 0, 0.432);
+  background-color: rgba(0, 0, 0, 0.856);
   backdrop-filter: blur(10px);
   top: 0;
   width: 100%;
