@@ -3,9 +3,10 @@ import Cell from "./cell";
 export default class Visualizer {
 	constructor(mazeContext) {
 		this.context = mazeContext;
+		this.WIDTH = 2;
 	}
 
-	async drawCellWithDelay(cell, gapSize, fillStyle = "white", delay = 0) {
+	async drawCellWithDelay(cell, gapSize, fillStyle = "rgba(33, 33, 33, 0.15)", delay = 0) {
 		return new Promise((resolve) => {
 			setTimeout(() => {
 				this.drawCell(cell, gapSize, fillStyle);
@@ -15,6 +16,7 @@ export default class Visualizer {
 	}
 
 	drawCell(cell, gapSize, fillStyle = "white") {
+		this.context.clearRect(cell.row * gapSize, cell.col * gapSize, gapSize, gapSize); // Clear the cell area before drawing
 		if (cell.isFinish) fillStyle = "green";
 		if (cell.isStart) fillStyle = "red";
 		this.context.fillStyle = fillStyle;
@@ -26,6 +28,7 @@ export default class Visualizer {
 	}
 
 	drawTop(cell, gapSize) {
+		this.context.lineWidth = this.WIDTH;
 		this.context.beginPath();
 		this.context.moveTo(cell.row * gapSize, cell.col * gapSize);
 		this.context.lineTo(cell.row * gapSize + gapSize, cell.col * gapSize);
@@ -33,6 +36,7 @@ export default class Visualizer {
 	}
 
 	drawRight(cell, gapSize) {
+		this.context.lineWidth = this.WIDTH;
 		this.context.beginPath();
 		this.context.moveTo(cell.row * gapSize + gapSize, cell.col * gapSize);
 		this.context.lineTo(cell.row * gapSize + gapSize, cell.col * gapSize + gapSize);
@@ -40,6 +44,7 @@ export default class Visualizer {
 	}
 
 	drawBottom(cell, gapSize) {
+		this.context.lineWidth = this.WIDTH;
 		this.context.beginPath();
 		this.context.moveTo(cell.row * gapSize, cell.col * gapSize + gapSize);
 		this.context.lineTo(cell.row * gapSize + gapSize, cell.col * gapSize + gapSize);
@@ -47,6 +52,7 @@ export default class Visualizer {
 	}
 
 	drawLeft(cell, gapSize) {
+		this.context.lineWidth = this.WIDTH;
 		this.context.beginPath();
 		this.context.moveTo(cell.row * gapSize, cell.col * gapSize);
 		this.context.lineTo(cell.row * gapSize, cell.col * gapSize + gapSize);

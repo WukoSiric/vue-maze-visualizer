@@ -52,7 +52,7 @@ export default {
 
 <template>
   <div class="container">
-    <NavBar id="navbar" @solve-maze="solveMaze" @generate-maze="generateMaze"></NavBar>
+    <NavBar @solve-maze="solveMaze" @generate-maze="generateMaze"></NavBar>
     <MazeGrid ref="mazeGridRef"></MazeGrid>
     <div :class="[!isMobile ? 'hidden' : 'floatingButtons']">
       <div class="buttonsContainer">
