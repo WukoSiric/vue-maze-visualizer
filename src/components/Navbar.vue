@@ -6,7 +6,14 @@ export default {
     return {
       menuExpanded: false,
       isMobile: window.innerWidth < 768,
-      solvingAlgorithm: 'DFS'
+      solvingAlgorithm: 'DFS',
+      currentBackgroundIndex: 0,
+      backgroundStrings: [
+        'linear-gradient(rgba(255, 255, 255, 0.205) 75%, rgb(27, 36, 66)), url("https://w.wallhaven.cc/full/pk/wallhaven-pky9yp.png")',
+        'url("https://w.wallhaven.cc/full/kw/wallhaven-kw6m71.jpg")',
+        'url("https://w.wallhaven.cc/full/4l/wallhaven-4lj87l.jpg")',
+        'linear-gradient(rgba(255, 255, 255, 0.205) 75%, rgb(27, 36, 66)), url(https://w.wallhaven.cc/full/d5/wallhaven-d5xw6o.jpg)'
+      ]
     };
   },
   mounted() {
@@ -33,6 +40,12 @@ export default {
     },
     solveMaze() {
       this.$emit('solveMaze', this.solvingAlgorithm);
+    },
+    changeBackground() {
+      const body = document.body;
+      this.currentBackgroundIndex += 1; 
+      this.currentBackgroundIndex = this.currentBackgroundIndex % this.backgroundStrings.length;
+      body.style.backgroundImage = this.backgroundStrings[this.currentBackgroundIndex];
     }
   }
 }
@@ -60,6 +73,8 @@ export default {
         Breadth First Search
       </label>
       <button @click="solveMaze(); closeMenu()"> <i class="fa fa-play"></i> Solve</button>
+      <h1><i class="fa fa-image"></i> Wallpaper</h1>
+      <button @click="changeBackground"> Change Background </button>
     </div>
   </div>
 </template>
