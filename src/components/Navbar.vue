@@ -5,7 +5,7 @@ export default {
   data() {
     return {
       menuExpanded: false,
-      isMobile: window.innerWidth < 1024,
+      isMobile: window.innerWidth < 768,
       solvingAlgorithm: 'DFS'
     };
   },
@@ -23,7 +23,7 @@ export default {
       this.menuExpanded = false;
     },
     updateIsMobile() {
-      this.isMobile = window.innerWidth < 1024;
+      this.isMobile = window.innerWidth < 768;
       if (this.isMobile) {
         this.menuExpanded = false;
       }
@@ -78,7 +78,8 @@ a,
 .navbar {
   display: grid;
   grid-template-columns: 1fr;
-  background-color: rgb(51, 51, 51);
+  background-color: rgba(0, 0, 0, 0.432);
+  backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
   width: 100%;
@@ -98,7 +99,6 @@ a,
   gap: 1rem;
   grid-template-columns: 1fr;
   text-align: center;
-  background-color: rgb(51, 51, 51);
   padding: 10px;
 }
 
@@ -158,15 +158,12 @@ button:hover {
 }
 
 /* Desktop design - apply when the screen width is 1024px or larger */
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .navbar {
     display: grid;
     align-content: start;
-    position: fixed;
-    left: 0;
-    width: auto;
+    width: 100%;
     height: 100%;
-
   }
 
   .navbar-contents {

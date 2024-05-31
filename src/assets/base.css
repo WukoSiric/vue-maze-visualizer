@@ -17,5 +17,8 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
-    background-color: #5c5c5c;
+    /* background-color: #5c5c5c; */
+    background-image: linear-gradient(transparent, rgb(21, 21, 51)), url(https://w.wallhaven.cc/full/d5/wallhaven-d5xw6o.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     }

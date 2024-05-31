@@ -51,10 +51,8 @@ export default {
 </script>
 
 <template>
-  <header>
-    <NavBar @solve-maze="solveMaze" @generate-maze="generateMaze"></NavBar>
-  </header>
-  <main>
+  <div class="container">
+    <NavBar id="navbar" @solve-maze="solveMaze" @generate-maze="generateMaze"></NavBar>
     <MazeGrid ref="mazeGridRef"></MazeGrid>
     <div :class="[!isMobile ? 'hidden' : 'floatingButtons']">
       <div class="buttonsContainer">
@@ -63,8 +61,8 @@ export default {
       </div>
     </div>
     <StatusPrompt :isVisible="isGenerating" message="Generating..."></StatusPrompt>
-    <StatusPrompt :isVisible="isSolving" message="Solving..."></StatusPrompt>
-  </main>
+    <StatusPrompt :isVisible="isSolving" message="Solving..."></StatusPrompt>    
+  </div>
 </template>
 
 <style scoped>
@@ -86,15 +84,17 @@ export default {
 .buttonsContainer {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* margin: 0 auto; Center the buttons horizontally */
   gap: 10px;
 }
 
-@media (min-width: 1024px) {
-  main {
-    padding-left: 80px;
-    margin: 4% 120px;
+@media (min-width: 768px) {
+  .container {
+    display: grid;
+    grid-template: 
+    "1fr 1fr";
+    height: 100vh;
+    align-items: center;
+    gap: 20px;
   }
 }
 </style>
