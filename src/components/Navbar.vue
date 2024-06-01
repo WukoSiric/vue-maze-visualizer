@@ -14,7 +14,8 @@ export default {
         'url("https://w.wallhaven.cc/full/kw/wallhaven-kw6m71.jpg")',
         'url("https://w.wallhaven.cc/full/4l/wallhaven-4lj87l.jpg")',
         'url("https://w.wallhaven.cc/full/5g/wallhaven-5gq913.jpg")',
-        'linear-gradient(rgba(255, 255, 255, 0.205) 75%, rgb(27, 36, 66)), url(https://w.wallhaven.cc/full/d5/wallhaven-d5xw6o.jpg)'
+        'linear-gradient(rgba(255, 255, 255, 0.205) 75%, rgb(27, 36, 66)), url(https://w.wallhaven.cc/full/d5/wallhaven-d5xw6o.jpg)',
+        'url(https://www.datocms-assets.com/12893/1607883685-amazon-rainforest-clouds.jpg)'
       ]
     };
   },
