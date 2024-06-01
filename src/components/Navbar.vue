@@ -62,10 +62,12 @@ export default {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <div class="navbar">
     <!-- Logo and Menu -->
-    <span id="MazeSolver">MazeSolver</span>
-    <a v-if="isMobile" href="javascript:void(0);" @click="toggleMenu()">
-      <i class="fa fa-bars"></i>
-    </a>
+    <div class="navbar-header">
+      <span id="MazeSolver">MazeSolver</span>
+      <a v-if="isMobile" href="javascript:void(0);" @click="toggleMenu()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
     <!-- Maze Options -->
     <div v-if="!isMobile || menuExpanded" class="navbar-contents">
       <h1><i class="fa fa-plus-square"></i> Generation</h1>
@@ -82,7 +84,7 @@ export default {
       <button @click="solveMaze(); closeMenu()"> <i class="fa fa-play"></i> Solve</button>
       <h1><i class="fa fa-image"></i> Wallpaper</h1>
       <div class="backgrounds">
-        <div v-for="(background, index) in backgroundStrings" :key="background" class="background" :style="{backgroundImage: background}" @click="setBackground(background)">
+        <div v-for="(background) in backgroundStrings" :key="background" class="background" :style="{backgroundImage: background}" @click="setBackground(background)">
           
         </div>      
       </div>
@@ -113,11 +115,18 @@ a,
   transition: all ease-in-out 0.2s;
 }
 
+.navbar-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25vw;
+}
+
 #MazeSolver {
   color: white;
   font-weight: 500;
   font-size: 2rem;
-  padding: 10px;
 }
 
 .navbar-contents {
