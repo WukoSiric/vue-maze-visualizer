@@ -9,6 +9,7 @@ export default {
       solvingAlgorithm: 'DFS',
       currentBackgroundIndex: 0,
       backgroundStrings: [
+        'linear-gradient(rgb(241, 241, 241) 50%, rgb(160, 160, 160))',
         'linear-gradient(rgba(255, 255, 255, 0.205) 75%, rgb(27, 36, 66)), url("https://w.wallhaven.cc/full/pk/wallhaven-pky9yp.png")',
         'url("https://w.wallhaven.cc/full/kw/wallhaven-kw6m71.jpg")',
         'url("https://w.wallhaven.cc/full/4l/wallhaven-4lj87l.jpg")',
@@ -47,6 +48,10 @@ export default {
       this.currentBackgroundIndex += 1; 
       this.currentBackgroundIndex = this.currentBackgroundIndex % this.backgroundStrings.length;
       body.style.backgroundImage = this.backgroundStrings[this.currentBackgroundIndex];
+    },
+    setBackground(backgroundString) {
+      const body = document.body;
+      body.style.backgroundImage = backgroundString;
     }
   }
 }
@@ -75,7 +80,12 @@ export default {
       </label>
       <button @click="solveMaze(); closeMenu()"> <i class="fa fa-play"></i> Solve</button>
       <h1><i class="fa fa-image"></i> Wallpaper</h1>
-      <button @click="changeBackground"> Change Background </button>
+      <div class="backgrounds">
+        <div v-for="(background, index) in backgroundStrings" :key="background" class="background" :style="{backgroundImage: background}" @click="setBackground(background)">
+          
+        </div>      
+      </div>
+      <!-- <button @click="changeBackground"> Change Background </button> -->
     </div>
   </div>
 </template>
@@ -170,6 +180,33 @@ button:hover {
 .radio-container:has(input[type="radio"]:checked) {
   background-color: #47cc89;
   color: white;
+}
+
+.backgrounds { 
+  display: grid;
+  grid-template: 
+    "1fr 1fr 1fr";
+  gap: 5px;
+
+  transition: all ease-in-out 0.1s;
+}
+
+.background { 
+  box-sizing: border-box;
+  min-height: 5vh;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.445);
+  border-radius: 10px;
+  column-span: 1;
+  background-size: cover;
+}
+
+.background:hover {
+  cursor: pointer;
+  transform: scale(0.95);
+  opacity: 95%;
 }
 
 /* Desktop design - apply when the screen width is 1024px or larger */
