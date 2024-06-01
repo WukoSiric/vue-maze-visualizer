@@ -9,10 +9,13 @@ export default {
   mounted() {
     this.canvas = document.getElementById("maze");
     this.context = this.canvas.getContext("2d");
-    this.canvas.width = window.innerWidth - 200;
+    this.canvas.width = window.innerWidth - 100;
+    if (window.innerWidth > 768) {
+      this.canvas.width = window.innerWidth - 300;
+    }
     this.canvas.height = window.innerHeight - 150;
     this.gapSize = Math.floor(this.canvas.width / 20);
-    if (this.canvas.width > 1024) {
+    if (this.canvas.width > 768) {
       this.gapSize = 40;
     }
     this.canvas.width -= this.canvas.width % this.gapSize;
@@ -56,7 +59,7 @@ canvas {
 @media(max-width: 768px) {
   canvas {
     display: inline;
-    margin: auto;
+    margin: 0;
   }
 }
 </style>

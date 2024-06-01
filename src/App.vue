@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       mazeGridRef: null,
-      isMobile: window.innerWidth < 1024,
+      isMobile: window.innerWidth < 768,
     };
   },
   mounted() {
@@ -34,7 +34,7 @@ export default {
       this.mazeGridRef.solveMaze(solvingAlgorithm);
     },
     updateIsMobile() {
-      this.isMobile = window.innerWidth < 1024;
+      this.isMobile = window.innerWidth < 768;
     },
   },
   computed: {
@@ -54,21 +54,23 @@ export default {
   <div class="container">
     <NavBar @solve-maze="solveMaze" @generate-maze="generateMaze"></NavBar>
     <MazeGrid ref="mazeGridRef"></MazeGrid>
-    <div :class="[!isMobile ? 'hidden' : 'floatingButtons']">
-      <div class="buttonsContainer">
-        <FloatingButton faClass="fa fa-refresh" :buttonFunction="generateMaze"></FloatingButton>
-        <FloatingButton faClass="fa fa-play" :buttonFunction="solveMaze"></FloatingButton>
-      </div>
-    </div>
-    <StatusPrompt :isVisible="isGenerating" message="Generating..."></StatusPrompt>
-    <StatusPrompt :isVisible="isSolving" message="Solving..."></StatusPrompt>    
   </div>
+  <div :class="[!isMobile ? 'hidden' : 'floatingButtons']">
+    <div class="buttonsContainer">
+      <FloatingButton faClass="fa fa-refresh" :buttonFunction="generateMaze"></FloatingButton>
+      <FloatingButton faClass="fa fa-play" :buttonFunction="solveMaze"></FloatingButton>
+    </div>
+  </div>
+  <StatusPrompt :isVisible="isGenerating" message="Generating..."></StatusPrompt>
+  <StatusPrompt :isVisible="isSolving" message="Solving..."></StatusPrompt>    
 </template>
 
 <style scoped>
 
 .container {
   display: grid;
+  justify-items: center;
+  gap: 10px;
   height: 100vh;
 }
 .hidden {
@@ -95,10 +97,9 @@ export default {
 @media (min-width: 768px) {
   .container {
     grid-template: 
-    "1fr 1fr";
+    "2fr 1fr";
     height: 100vh;
     align-items: center;
-    gap: 20px;
   }
 }
 </style>
